@@ -28,7 +28,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
-    steps: 
+    steps:
       - uses: actions/checkout@v5
       - name: Filtro de arquivos
         id: filtro
@@ -38,8 +38,8 @@ jobs:
             java:
               - '**/*.java'
       - name: Merge
-        if: ${{!contains(steps.filtro.outputs.changes, 'java')}}
-        uses: dev masx/merge-branch@1.4.0
+        if: ${{ !contains(steps.filtro.outputs.changes, 'java') }}
+        uses: devmasx/merge-branch@1.4.0
         with:
           type: now
           target_branch: main
